@@ -113,7 +113,6 @@ public class SignupProfessor extends javax.swing.JFrame {
             genero ="M";
         }
         String dataNasc = auxDateMySQL();
-        System.out.println(dataNasc);
         novoCliente.setNome(txtNomeUsuario.getText());
         novoCliente.setSobrenome(txtSobrenomeUsuario.getText());
         novoCliente.setCpf(txtCpf.getText());
@@ -247,7 +246,6 @@ public class SignupProfessor extends javax.swing.JFrame {
         }
           
            String genero = novoCliente.getGenero();
-            System.out.println(genero);
                       
            switch(genero){
                 case "F" -> rbnFeminino.setSelected(true);

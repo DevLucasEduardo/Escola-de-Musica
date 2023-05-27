@@ -51,3 +51,28 @@ insert into aula values('Canto', default);
 insert into aula values('Guitarra', default);
 insert into aula values('Piano', default);
 insert into aula values('Violão', default);
+
+-- AF
+CREATE TABLE fornecedor (
+    cnpj 				VARCHAR(18) NOT NULL,
+    fornecedor 			VARCHAR(30) NOT NULL,
+    razao_social 		VARCHAR(50) NOT NULL,
+    codigo_fornecedor 	INT NOT NULL AUTO_INCREMENT,
+    
+    PRIMARY KEY (codigo_fornecedor)
+);
+
+CREATE TABLE instrumento (
+    instrumento 		VARCHAR(30) NOT NULL,
+    categoria 			VARCHAR(15) NOT NULL,
+    marca 				VARCHAR(20) NOT NULL,
+    codigo_instrumento 	INT NOT NULL AUTO_INCREMENT,
+    fk_fornecedor 		INT NOT NULL,
+    
+    PRIMARY KEY (codigo_instrumento),
+    FOREIGN KEY (fk_fornecedor) 
+		REFERENCES fornecedor (codigo_fornecedor)
+);
+
+
+
