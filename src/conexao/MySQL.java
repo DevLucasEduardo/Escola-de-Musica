@@ -62,11 +62,11 @@ public class MySQL {
     public void setResultSet(ResultSet resultSet) {
         this.resultSet = resultSet;
     }
-        
+          
     public void conectaBanco(){
         try {
             //Class.forName("com.mysql.jdbc.Driver").newInstance();
-
+            
             conn = DriverManager.getConnection("jdbc:mysql://" + servidor + "/" + nomeDoBanco, usuario, senha);
             //conn = DriverManager.getConnection("jdbc:mysql://localhost3306/banco_loja", "root", "root");
             

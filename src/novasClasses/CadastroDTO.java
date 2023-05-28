@@ -5,12 +5,13 @@ public class CadastroDTO {
     private String instrumento;
     private String categoria;
     private String marca;
-    private String codigoInstrumento; 
+    private int codigoInstrumento; 
+    private int fkFornecedor; 
 
     private String cnpj;
     private String fornecedor;
     private String razaoSocial;
-    private String codigoFornecedor;
+    private int codigoFornecedor;
     
     private String pais;
     private String estado;
@@ -18,7 +19,7 @@ public class CadastroDTO {
     private String codigoPostal;
 
     // Instrumento
-    public CadastroDTO(String instrumento, String categoria, String marca, String codigoInstrumento, String cnpj, String fornecedor) {
+    public CadastroDTO(String instrumento, String categoria, String marca, int codigoInstrumento, String cnpj, String fornecedor) {
         this.instrumento = instrumento;
         this.categoria = categoria;
         this.marca = marca;
@@ -28,7 +29,7 @@ public class CadastroDTO {
     }
 
     // Fornecedor
-    public CadastroDTO(String cnpj, String fornecedor, String razaoSocial, String codigoFornecedor, String pais, String estado, String cidade, String codigoPostal) {
+    public CadastroDTO(String cnpj, String fornecedor, String razaoSocial, int codigoFornecedor, String pais, String estado, String cidade, String codigoPostal) {
         this.cnpj = cnpj;
         this.fornecedor = fornecedor;
         this.razaoSocial = razaoSocial;
@@ -38,8 +39,6 @@ public class CadastroDTO {
         this.cidade = cidade;
         this.codigoPostal = codigoPostal;
     }
-    
-    
 
     public String getInstrumento() {
         return instrumento;
@@ -65,12 +64,20 @@ public class CadastroDTO {
         this.marca = marca;
     }
 
-    public String getCodigoInstrumento() {
+    public int getCodigoInstrumento() {
         return codigoInstrumento;
     }
 
-    public void setCodigoInstrumento(String codigoInstrumento) {
+    public void setCodigoInstrumento(int codigoInstrumento) {
         this.codigoInstrumento = codigoInstrumento;
+    }
+
+    public int getFkFornecedor() {
+        return fkFornecedor;
+    }
+
+    public void setFkFornecedor(int fkFornecedor) {
+        this.fkFornecedor = fkFornecedor;
     }
 
     public String getCnpj() {
@@ -97,11 +104,11 @@ public class CadastroDTO {
         this.razaoSocial = razaoSocial;
     }
 
-    public String getCodigoFornecedor() {
+    public int getCodigoFornecedor() {
         return codigoFornecedor;
     }
 
-    public void setCodigoFornecedor(String codigoFornecedor) {
+    public void setCodigoFornecedor(int codigoFornecedor) {
         this.codigoFornecedor = codigoFornecedor;
     }
 
@@ -138,8 +145,7 @@ public class CadastroDTO {
     }
     
     
-    
-    
+
 }
 
    
