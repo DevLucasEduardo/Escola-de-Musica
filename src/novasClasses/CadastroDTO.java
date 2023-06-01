@@ -10,36 +10,35 @@ public class CadastroDTO {
     private String cnpj;
     private String fornecedor;
     private String razaoSocial;
-    private String codigoFornecedor;
-    
     private String pais;
     private String estado;
     private String cidade;
     private String codigoPostal;
 
     // Instrumento
-    public CadastroDTO(String instrumento, String categoria, String marca, String codigoInstrumento, String cnpj, String fornecedor) {
+    public CadastroDTO(String instrumento, String categoria, String marca, String cnpj, String fornecedor) {
         this.instrumento = instrumento;
         this.categoria = categoria;
         this.marca = marca;
-        this.codigoInstrumento = codigoInstrumento;
         this.cnpj = cnpj;
         this.fornecedor = fornecedor;
     }
 
     // Fornecedor
-    public CadastroDTO(String cnpj, String fornecedor, String razaoSocial, String codigoFornecedor, String pais, String estado, String cidade, String codigoPostal) {
+    public CadastroDTO(String cnpj, String fornecedor, String razaoSocial, String pais, String estado, String cidade, String codigoPostal) {
         this.cnpj = cnpj;
         this.fornecedor = fornecedor;
         this.razaoSocial = razaoSocial;
-        this.codigoFornecedor = codigoFornecedor;
         this.pais = pais;
         this.estado = estado;
         this.cidade = cidade;
         this.codigoPostal = codigoPostal;
     }
     
-    
+    // Anônimo
+    public CadastroDTO() {
+        
+    }
 
     public String getInstrumento() {
         return instrumento;
@@ -97,14 +96,6 @@ public class CadastroDTO {
         this.razaoSocial = razaoSocial;
     }
 
-    public String getCodigoFornecedor() {
-        return codigoFornecedor;
-    }
-
-    public void setCodigoFornecedor(String codigoFornecedor) {
-        this.codigoFornecedor = codigoFornecedor;
-    }
-
     public String getPais() {
         return pais;
     }
@@ -138,8 +129,7 @@ public class CadastroDTO {
     }
     
     
-    
-    
+
 }
 
    

@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS escola_de_musica;
 USE escola_de_musica;
--- drop database escola_de_musica;
+ drop database escola_de_musica;
 
 create table aula (
     nome_aula varchar(20),
@@ -51,3 +51,33 @@ insert into aula values('Canto', default);
 insert into aula values('Guitarra', default);
 insert into aula values('Piano', default);
 insert into aula values('Violão', default);
+
+-- AF
+CREATE TABLE fornecedor (
+    cnpj 				VARCHAR(18) NOT NULL UNIQUE,
+    fornecedor 			VARCHAR(30) NOT NULL,
+    razao_social 		VARCHAR(50) NOT NULL,
+	pais 				varchar(30) NOT NULL DEFAULT 'brasil',
+    estado 				VARCHAR(30) NOT NULL,
+    cidade 				VARCHAR(30) NOT NULL,
+    codigo_postal 		VARCHAR(30) NOT NULL,
+    PRIMARY KEY (cnpj)
+);
+
+CREATE TABLE instrumento (
+    instrumento 		VARCHAR(30) NOT NULL,
+    categoria 			VARCHAR(15) NOT NULL,
+    marca 				VARCHAR(20) NOT NULL,
+    codigo_instrumento 	INT NOT NULL AUTO_INCREMENT,
+    fk_fornecedor 		varchar(18) NOT NULL,
+    
+    PRIMARY KEY (codigo_instrumento),
+    FOREIGN KEY (fk_fornecedor) 
+		REFERENCES fornecedor (cnpj)
+);
+
+
+insert into fornecedor values("11.111.1-01", "solo", "solo instrumentos", "brasil", "SP", "Sorocaba", "18123");
+insert into fornecedor values("11.111.1-31", "phenix", "phenix instrumentos", "brasil", "SP", "Campinas", "13893");
+insert into instrumento values("violao", "cordas", "crafter", default, "11.111.1-31");
+insert into instrumento values("piano", "teclas", "yamaha", default, "11.111.1-01");

@@ -3,15 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/ADS/newProject/EscolaDeMusicaAtual/src/telas/MenuInicial.java</file>
-            <file>file:/D:/ADS/newProject/EscolaDeMusicaAtual/src/escolademusica/EscolaDeMusica.java</file>
-            <file>file:/D:/ADS/newProject/EscolaDeMusicaAtual/src/telas/SignupProfessor.java</file>
-            <file>file:/D:/ADS/newProject/EscolaDeMusicaAtual/src/conexao/MySQL.java</file>
-            <file>file:/D:/ADS/newProject/EscolaDeMusicaAtual/src/classesUsuario/CadastroProfessor.java</file>
-            <file>file:/D:/ADS/newProject/EscolaDeMusicaAtual/src/telas/LoginUser.java</file>
-            <file>file:/D:/ADS/newProject/EscolaDeMusicaAtual/src/telas/SignupUser.java</file>
-            <file>file:/D:/ADS/newProject/EscolaDeMusicaAtual/src/telas/TelaUsuario.java</file>
-            <file>file:/D:/ADS/newProject/EscolaDeMusicaAtual/src/conexao/bancoDeDadosEscolaMusica.sql</file>
+            <file>file:/D:/ADS/AF%20Linguagens%20de%20Programação/EscolaDeMusicaAtual/src/novasClasses/DAOInterface.java</file>
+            <file>file:/D:/ADS/AF%20Linguagens%20de%20Programação/EscolaDeMusicaAtual/src/novasClasses/ProdutoDAO.java</file>
+            <file>file:/D:/ADS/AF%20Linguagens%20de%20Programação/EscolaDeMusicaAtual/src/conexao/bancoDeDadosEscolaMusica.sql</file>
+            <file>file:/D:/ADS/AF%20Linguagens%20de%20Programação/EscolaDeMusicaAtual/src/escolademusica/EscolaDeMusica.java</file>
+            <file>file:/D:/ADS/AF%20Linguagens%20de%20Programação/EscolaDeMusicaAtual/src/telas/TelaUsuario.java</file>
+            <file>file:/D:/ADS/AF%20Linguagens%20de%20Programação/EscolaDeMusicaAtual/src/telas/SignupUser.java</file>
+            <file>file:/D:/ADS/AF%20Linguagens%20de%20Programação/EscolaDeMusicaAtual/src/telas/MenuInicial.java</file>
+            <file>file:/D:/ADS/AF%20Linguagens%20de%20Programação/EscolaDeMusicaAtual/src/conexao/MySQL.java</file>
+            <file>file:/D:/ADS/AF%20Linguagens%20de%20Programação/EscolaDeMusicaAtual/src/novasClasses/CadastroDTO.java</file>
+            <file>file:/D:/ADS/AF%20Linguagens%20de%20Programação/EscolaDeMusicaAtual/src/telas/LoginUser.java</file>
+            <file>file:/D:/ADS/AF%20Linguagens%20de%20Programação/EscolaDeMusicaAtual/src/novasTelas/Cadastros.java</file>
+            <file>file:/D:/ADS/AF%20Linguagens%20de%20Programação/EscolaDeMusicaAtual/src/telas/SignupProfessor.java</file>
         </group>
     </open-files>
 </project-private>
