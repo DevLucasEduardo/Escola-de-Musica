@@ -5,14 +5,11 @@ public class CadastroDTO {
     private String instrumento;
     private String categoria;
     private String marca;
-    private int codigoInstrumento; 
-    private int fkFornecedor; 
+    private String codigoInstrumento; 
 
     private String cnpj;
     private String fornecedor;
     private String razaoSocial;
-    private int codigoFornecedor;
-    
     private String pais;
     private String estado;
     private String cidade;
@@ -23,7 +20,6 @@ public class CadastroDTO {
         this.instrumento = instrumento;
         this.categoria = categoria;
         this.marca = marca;
-        this.codigoInstrumento = codigoInstrumento;
         this.cnpj = cnpj;
         this.fornecedor = fornecedor;
     }
@@ -33,11 +29,15 @@ public class CadastroDTO {
         this.cnpj = cnpj;
         this.fornecedor = fornecedor;
         this.razaoSocial = razaoSocial;
-        this.codigoFornecedor = codigoFornecedor;
         this.pais = pais;
         this.estado = estado;
         this.cidade = cidade;
         this.codigoPostal = codigoPostal;
+    }
+    
+    // Anônimo
+    public CadastroDTO() {
+        
     }
 
     public String getInstrumento() {
@@ -64,20 +64,12 @@ public class CadastroDTO {
         this.marca = marca;
     }
 
-    public int getCodigoInstrumento() {
+    public String getCodigoInstrumento() {
         return codigoInstrumento;
     }
 
-    public void setCodigoInstrumento(int codigoInstrumento) {
+    public void setCodigoInstrumento(String codigoInstrumento) {
         this.codigoInstrumento = codigoInstrumento;
-    }
-
-    public int getFkFornecedor() {
-        return fkFornecedor;
-    }
-
-    public void setFkFornecedor(int fkFornecedor) {
-        this.fkFornecedor = fkFornecedor;
     }
 
     public String getCnpj() {
@@ -102,14 +94,6 @@ public class CadastroDTO {
 
     public void setRazaoSocial(String razaoSocial) {
         this.razaoSocial = razaoSocial;
-    }
-
-    public int getCodigoFornecedor() {
-        return codigoFornecedor;
-    }
-
-    public void setCodigoFornecedor(int codigoFornecedor) {
-        this.codigoFornecedor = codigoFornecedor;
     }
 
     public String getPais() {

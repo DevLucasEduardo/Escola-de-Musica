@@ -158,7 +158,7 @@ public class SignupProfessor extends javax.swing.JFrame {
                     + aula_prof_fk
                     + ");"
             );
-            
+
             JOptionPane.showMessageDialog(null, "Professor cadastrado com sucesso");
             
         } catch (Exception e) {
