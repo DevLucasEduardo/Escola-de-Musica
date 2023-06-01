@@ -5,7 +5,6 @@
 package novasClasses;
 
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  *
@@ -14,7 +13,7 @@ import java.util.List;
 public interface DAOInterface {
     
     void create(CadastroDTO cadastro) throws SQLException;
-    List<CadastroDTO> read(CadastroDTO cadastro) throws SQLException;
+    void read(CadastroDTO cadastro, int id) throws SQLException;
     void update(CadastroDTO cadastro) throws SQLException;
     void delete(CadastroDTO cadastro) throws SQLException;
     

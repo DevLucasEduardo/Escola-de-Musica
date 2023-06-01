@@ -19,7 +19,7 @@ public class CadastroDTO {
     private String codigoPostal;
 
     // Instrumento
-    public CadastroDTO(String instrumento, String categoria, String marca, int codigoInstrumento, String cnpj, String fornecedor) {
+    public CadastroDTO(String instrumento, String categoria, String marca, String cnpj, String fornecedor) {
         this.instrumento = instrumento;
         this.categoria = categoria;
         this.marca = marca;
@@ -29,7 +29,7 @@ public class CadastroDTO {
     }
 
     // Fornecedor
-    public CadastroDTO(String cnpj, String fornecedor, String razaoSocial, int codigoFornecedor, String pais, String estado, String cidade, String codigoPostal) {
+    public CadastroDTO(String cnpj, String fornecedor, String razaoSocial, String pais, String estado, String cidade, String codigoPostal) {
         this.cnpj = cnpj;
         this.fornecedor = fornecedor;
         this.razaoSocial = razaoSocial;

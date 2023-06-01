@@ -5,6 +5,9 @@
 package telas;
 
 import java.awt.Image;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import novasTelas.Cadastros;
 
@@ -131,7 +134,11 @@ public class MenuInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAlunosActionPerformed
 
     private void btnInstrumentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstrumentosActionPerformed
-        new Cadastros();
+        try {
+            new Cadastros();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuInicial.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnInstrumentosActionPerformed
 
     /**
