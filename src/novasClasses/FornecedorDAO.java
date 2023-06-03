@@ -33,7 +33,7 @@ public class FornecedorDAO implements DAOInterface {
         
         
         conn.conectaBanco();
-        conn.executarSQL("SELECT * FROM fornecedor WHERE cnpj = '" + id + "';");
+        conn.executarSQL("SELECT * FROM fornecedor WHERE cnpj = '" + id + "'");
         
         while (conn.getResultSet().next()) {
             cadastro.setCnpj(cnpjReplace(conn.getResultSet().getString(1)));
@@ -58,7 +58,7 @@ public class FornecedorDAO implements DAOInterface {
                 + "estado=?, "
                 + "cidade=?, "
                 + "codigo_postal=? "
-                + "WHERE cnpj = " + id + ";");
+                + "WHERE cnpj = '" + id + "'");
         
         PreparedStatement ps = conn.getConn().prepareStatement(sql); 
         ps.setString(1, cadastro.getFornecedor());
@@ -74,7 +74,7 @@ public class FornecedorDAO implements DAOInterface {
     public void delete(CadastroDTO cadastro, String id) throws SQLException{
         
         conn.conectaBanco(); 
-        conn.updateSQL("DELETE FROM fornecedor WHERE cnpj = " + id + ";");
+        conn.updateSQL("DELETE FROM fornecedor WHERE cnpj = " + id);
         
     }
     

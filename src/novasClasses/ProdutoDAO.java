@@ -13,7 +13,6 @@ public class ProdutoDAO implements DAOInterface {
     public String create(CadastroDTO cadastro) throws SQLException {
         
         conn.conectaBanco(); 
-        //cadastro.setCnpj(readFornecedor(cadastro.getFornecedor()));
 
         String sql = "INSERT INTO instrumento (instrumento, categoria, marca, fk_fornecedor) VALUES(?, ?, ?, ?)";
         PreparedStatement ps = conn.getConn().prepareStatement(sql); 
@@ -27,7 +26,7 @@ public class ProdutoDAO implements DAOInterface {
                                                    "AND categoria = '"+ cadastro.getCategoria() + "'" +
                                                    "AND marca = '" + cadastro.getMarca() + "'" +
                                                    "AND fk_fornecedor = '" + cadastro.getCnpj() + "'" + 
-                                                   "ORDER BY codigo_instrumento DESC LIMIT 1;");
+                                                   "ORDER BY codigo_instrumento DESC LIMIT 1");
 
         while (conn.getResultSet().next()) {
             cadastro.setCodigoInstrumento(conn.getResultSet().getString(4));
@@ -42,8 +41,8 @@ public class ProdutoDAO implements DAOInterface {
         conn.executarSQL("SELECT I.instrumento, I.categoria, I.marca, I.codigo_instrumento, F.fornecedor, F.cnpj, I.fk_fornecedor " +
                         "FROM fornecedor F JOIN instrumento I " +
                         "ON F.cnpj = I.fk_fornecedor " +
-                        "WHERE I.codigo_instrumento = " + id + ";");
-        
+                        "WHERE I.codigo_instrumento = " + id);
+
         while (conn.getResultSet().next()) {
             cadastro.setInstrumento(conn.getResultSet().getString(1));
             cadastro.setCategoria(conn.getResultSet().getString(2));
@@ -58,7 +57,12 @@ public class ProdutoDAO implements DAOInterface {
     public void update(CadastroDTO cadastro, String id) throws SQLException{
 
         conn.conectaBanco();
-        String sql = ("UPDATE instrumento SET instrumento=?, categoria=?, marca=?, fk_fornecedor=? WHERE codigo_instrumento = " + id);
+
+        String sql = ("UPDATE instrumento "
+                + "SET instrumento=?, "
+                + "categoria=?, "
+                + "marca=?, "
+                + "fk_fornecedor=? WHERE codigo_instrumento = " + id);
         
         PreparedStatement ps = conn.getConn().prepareStatement(sql); 
         ps.setString(1, cadastro.getInstrumento());
@@ -66,13 +70,14 @@ public class ProdutoDAO implements DAOInterface {
         ps.setString(3, cadastro.getMarca());
         ps.setString(4, cadastro.getCnpj());
         ps.execute();
+
     }
     
     @Override
     public void delete(CadastroDTO cadastro, String id) throws SQLException{
         
         conn.conectaBanco(); 
-        conn.updateSQL("DELETE FROM instrumento WHERE codigo_instrumento = " + id + ";");
+        conn.updateSQL("DELETE FROM instrumento WHERE codigo_instrumento = " + id);
         
     }
     

@@ -26,6 +26,7 @@ public class Cadastros extends javax.swing.JFrame {
         this.setTitle("Acesso Instrumentos");
         this.setLocationRelativeTo(null);
         this.setVisible(true);   
+        
         fornecedorMap.forEach((k, v) -> {
             cbxFornecedor.addItem(v);
             cnpjList.add(k);
@@ -61,7 +62,7 @@ public class Cadastros extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtCnpjProduto = new javax.swing.JFormattedTextField();
-        btnLimpar = new javax.swing.JButton();
+        btnLimparProduto = new javax.swing.JButton();
         btnAtualizarProduto = new javax.swing.JButton();
         btnExcluirProduto = new javax.swing.JButton();
         btnCadastrarProduto = new javax.swing.JButton();
@@ -89,6 +90,7 @@ public class Cadastros extends javax.swing.JFrame {
         btnCadastrarFornecedor = new javax.swing.JButton();
         btnAtualizarFornecedor = new javax.swing.JButton();
         btnExcluirFornecedor = new javax.swing.JButton();
+        btnLimparFornecedor = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -141,6 +143,8 @@ public class Cadastros extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
         );
 
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Informações do produto"));
+
         jLabel2.setText("Instrumento:");
 
         jLabel4.setText("<html>Código do instrumento: <br>\n(não editavel)");
@@ -169,10 +173,10 @@ public class Cadastros extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        btnLimpar.setText("Limpar campos");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+        btnLimparProduto.setText("Limpar campos");
+        btnLimparProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimparActionPerformed(evt);
+                btnLimparProdutoActionPerformed(evt);
             }
         });
 
@@ -181,24 +185,19 @@ public class Cadastros extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(17, 17, 17)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnLimpar)
+                    .addComponent(btnLimparProduto)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtInstrumento, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel5Layout.createSequentialGroup()
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(3, 3, 3)))
-                                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtInstrumento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(3, 3, 3))
+                            .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtMarca, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(39, 39, 39)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtCodInstrumento)
@@ -237,7 +236,7 @@ public class Cadastros extends javax.swing.JFrame {
                     .addComponent(txtCodInstrumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnLimpar)
+                .addComponent(btnLimparProduto)
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -269,35 +268,36 @@ public class Cadastros extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(41, 41, 41)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
+                        .addGap(29, 29, 29)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
                         .addComponent(btnCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(33, 33, 33)
                         .addComponent(btnAtualizarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(38, 38, 38)
                         .addComponent(btnExcluirProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(17, 17, 17)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAtualizarProduto)
                     .addComponent(btnExcluirProduto)
                     .addComponent(btnCadastrarProduto))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("INSTRUMENTOS", jPanel1);
+        jTabbedPane1.addTab("PRODUTOS", jPanel1);
 
         jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -340,6 +340,8 @@ public class Cadastros extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Fornecedor"));
+
         jLabel9.setText("Fornecedor:");
 
         jLabel12.setText("Razão Social:");
@@ -369,7 +371,7 @@ public class Cadastros extends javax.swing.JFrame {
                                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
                                         .addComponent(jLabel9)
-                                        .addGap(0, 1, Short.MAX_VALUE)))
+                                        .addGap(0, 5, Short.MAX_VALUE)))
                                 .addGap(95, 95, 95))
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addComponent(txtFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -382,7 +384,6 @@ public class Cadastros extends javax.swing.JFrame {
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel12))
@@ -390,11 +391,11 @@ public class Cadastros extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCnpjFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Endereço"));
@@ -416,17 +417,24 @@ public class Cadastros extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxPais, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel15)
-                        .addComponent(txtCidade)
-                        .addComponent(txtCodigoPostal, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
-                    .addComponent(jLabel16))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtCodigoPostal)))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbxPais, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel15)
+                            .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(19, 19, 19))
         );
         jPanel9Layout.setVerticalGroup(
@@ -440,7 +448,7 @@ public class Cadastros extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbxPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(jLabel16))
@@ -448,7 +456,7 @@ public class Cadastros extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCodigoPostal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12))
+                .addGap(16, 16, 16))
         );
 
         btnCadastrarFornecedor.setText("Cadastrar");
@@ -466,29 +474,41 @@ public class Cadastros extends javax.swing.JFrame {
         });
 
         btnExcluirFornecedor.setText("Excluir");
+        btnExcluirFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirFornecedorActionPerformed(evt);
+            }
+        });
+
+        btnLimparFornecedor.setText("Limpar campos");
+        btnLimparFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparFornecedorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(btnCadastrarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAtualizarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnExcluirFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(43, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnLimparFornecedor)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(btnCadastrarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(28, 28, 28)
+                            .addComponent(btnAtualizarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(39, 39, 39)
+                            .addComponent(btnExcluirFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -497,14 +517,16 @@ public class Cadastros extends javax.swing.JFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLimparFornecedor)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAtualizarFornecedor)
                     .addComponent(btnExcluirFornecedor)
+                    .addComponent(btnAtualizarFornecedor)
                     .addComponent(btnCadastrarFornecedor))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("FORNECEDORES", jPanel2);
@@ -598,6 +620,15 @@ public class Cadastros extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscaCodInstrumentoActionPerformed
 
     private void btnAtualizarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarProdutoActionPerformed
+        if (verificarCampos(true)) {
+            JOptionPane.showMessageDialog(null, "Há campos não preenchidos!");
+            return;
+        }
+        if ("".equals(txtCodInstrumento.getText())) {
+            JOptionPane.showMessageDialog(null, "Produto não selecionado. Selecione-o para efetuar operações.");
+            return;
+        }
+        
         CadastroDTO c = new CadastroDTO(txtInstrumento.getText(), 
                                         txtCategoria.getText(),
                                         txtMarca.getText(),
@@ -605,8 +636,9 @@ public class Cadastros extends javax.swing.JFrame {
                                         cbxFornecedor.getItemAt(cbxFornecedor.getSelectedIndex()));
 
         try {
-            p.update(c, txtBuscaCodInstrumento.getText());
-            JOptionPane.showMessageDialog(null, "Produto Atualizado");
+            p.update(c, txtCodInstrumento.getText());
+
+            JOptionPane.showMessageDialog(null, "Produto atualizado.");
         } catch (SQLException ex) {
             Logger.getLogger(Cadastros.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -614,10 +646,11 @@ public class Cadastros extends javax.swing.JFrame {
 
     private void btnCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdutoActionPerformed
 
-        if (cbxFornecedor.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Selecione o fornecedor.");
+        if (verificarCampos(true)) {
+            JOptionPane.showMessageDialog(null, "Há campos não preenchidos!");
             return;
         }
+        
         CadastroDTO c = new CadastroDTO(txtInstrumento.getText(), 
                                         txtCategoria.getText(),
                                         txtMarca.getText(),
@@ -627,7 +660,8 @@ public class Cadastros extends javax.swing.JFrame {
         try {
             String id = p.create(c);
             txtCodInstrumento.setText(String.valueOf(id));
-            JOptionPane.showMessageDialog(null, "Código do instrumento cadastrado: " + id + ".");
+            JOptionPane.showMessageDialog(null, "Produto cadastrado.\nCódigo: " + id + ".");
+            limparCamposProduto();
         } catch (SQLException ex) {
             Logger.getLogger(Cadastros.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -635,12 +669,16 @@ public class Cadastros extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarProdutoActionPerformed
 
     private void btnBuscarInstrumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarInstrumentoActionPerformed
-        CadastroDTO c = new CadastroDTO();
         
+        CadastroDTO c = new CadastroDTO();       
         String id = txtBuscaCodInstrumento.getText();
         
         try {
             p.read(c, id);
+            if (c.getCodigoInstrumento() == null) {
+                JOptionPane.showMessageDialog(null, "Produto não encontrado.");
+                return;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Cadastros.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -664,91 +702,181 @@ public class Cadastros extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cbxFornecedorActionPerformed
 
-    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        limparCampos();
-    }//GEN-LAST:event_btnLimparActionPerformed
-
-    private void btnCadastrarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarFornecedorActionPerformed
-        
-        if (cbxPais.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Preencha o país.");
-            return;
-        }
-        CadastroDTO c = new CadastroDTO(txtCnpjFornecedor.getText(), 
-                                        txtFornecedor.getText(),
-                                        txtRazaoSocial.getText(),
-                                        cbxPais.getItemAt(cbxPais.getSelectedIndex()),
-                                        txtEstado.getText(),
-                                        txtCidade.getText(),
-                                        txtCodigoPostal.getText());
-        try {
-            String id = f.create(c);
-            JOptionPane.showMessageDialog(null, "Fornecedor cadastrado. CNPJ: " + c.getCnpj() + ".");
-        } catch (SQLException ex) {
-            Logger.getLogger(Cadastros.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnCadastrarFornecedorActionPerformed
-
-    private void btnAtualizarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarFornecedorActionPerformed
-        CadastroDTO c = new CadastroDTO(txtFornecedor.getText(), 
-                                        txtRazaoSocial.getText(),
-                                        txtCnpjFornecedor.getText(),
-                                        cbxPais.getSelectedItem().toString(),
-                                        txtEstado.getText(),
-                                        txtCidade.getText(),
-                                        txtCodigoPostal.getText());
-                                        
-        System.out.println(txtCnpjFornecedor.getText());
-        /*
-        try {
-            f.update(c, txtCnpjFornecedorBusca.getText());
-            JOptionPane.showMessageDialog(null, "Fornecedor Atualizado");
-        } catch (SQLException ex) {
-            Logger.getLogger(Cadastros.class.getName()).log(Level.SEVERE, null, ex);
-        }     
-*/
-    }//GEN-LAST:event_btnAtualizarFornecedorActionPerformed
-
-    private void btnBuscarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFornecedorActionPerformed
-        CadastroDTO c = new CadastroDTO();
-        
-        String id = (txtCnpjFornecedorBusca.getText());
-
-        try {
-            f.read(c, id);
-        } catch (SQLException ex) {
-            Logger.getLogger(Cadastros.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    
-        txtCnpjFornecedor.setText(c.getCnpj());
-        txtFornecedor.setText(c.getFornecedor());
-        txtRazaoSocial.setText(c.getRazaoSocial());    
-        cbxPais.setSelectedItem(c.getPais());
-        txtEstado.setText(c.getEstado()); 
-        txtCidade.setText(c.getCidade()); 
-        txtCodigoPostal.setText(c.getCodigoPostal()); 
-     
-    }//GEN-LAST:event_btnBuscarFornecedorActionPerformed
+    private void btnLimparProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparProdutoActionPerformed
+        limparCamposProduto();
+    }//GEN-LAST:event_btnLimparProdutoActionPerformed
 
     private void btnExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirProdutoActionPerformed
+        if (verificarCampos(true)) {
+            JOptionPane.showMessageDialog(null, "Há campos não preenchidos!");
+            return;
+        }
+        
         CadastroDTO c = new CadastroDTO();
         
         try {
+            if ("".equals(txtCodInstrumento.getText())) {
+                JOptionPane.showMessageDialog(null, "Produto não selecionado. Selecione-o para efetuar operações.");
+                return;
+            }
             p.delete(c, txtCodInstrumento.getText());
+            JOptionPane.showMessageDialog(null, "Produto excluído.");
         } catch (SQLException ex) {
             Logger.getLogger(Cadastros.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnExcluirProdutoActionPerformed
 
-    private void limparCampos() {
-        txtInstrumento.setText(null);
-        txtMarca.setText(null);
-        txtCategoria.setText(null);
-        txtCodInstrumento.setText(null);
-        txtBuscaCodInstrumento.setText(null);
-        cbxFornecedor.setSelectedIndex(0);
+    private void btnLimparFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparFornecedorActionPerformed
+        limparCamposFornecedor();
+    }//GEN-LAST:event_btnLimparFornecedorActionPerformed
+
+    private void btnAtualizarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarFornecedorActionPerformed
         
+        if (verificarCampos(false)) {
+            JOptionPane.showMessageDialog(null, "Há campos não preenchidos!");
+            return;
+        }
+        
+        CadastroDTO c = new CadastroDTO(txtCnpjFornecedor.getText(),
+            txtFornecedor.getText(),
+            txtRazaoSocial.getText(),
+            cbxPais.getSelectedItem().toString(),
+            txtEstado.getText(),
+            txtCidade.getText(),
+            txtCodigoPostal.getText());
+
+        try {
+            f.update(c, txtCnpjFornecedorBusca.getText());
+            JOptionPane.showMessageDialog(null, "Fornecedor atualizado.");
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnAtualizarFornecedorActionPerformed
+
+    private void btnCadastrarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarFornecedorActionPerformed
+
+        if (verificarCampos(false)) {
+            JOptionPane.showMessageDialog(null, "Há campos não preenchidos!");
+            return;
+        }
+
+        CadastroDTO c = new CadastroDTO(txtCnpjFornecedor.getText(),
+            txtFornecedor.getText(),
+            txtRazaoSocial.getText(),
+            cbxPais.getItemAt(cbxPais.getSelectedIndex()),
+            txtEstado.getText(),
+            txtCidade.getText(),
+            txtCodigoPostal.getText());
+        try {
+            f.create(c);
+            JOptionPane.showMessageDialog(null, "Fornecedor cadastrado. \nCNPJ: " + c.getCnpj() + ".");
+            limparCamposProduto();
+            fornecedorMap.put(c.getCnpj(), c.getFornecedor());
+            cbxFornecedor.addItem(c.getFornecedor());
+            cnpjList.add(c.getCnpj());
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnCadastrarFornecedorActionPerformed
+
+    private void btnBuscarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFornecedorActionPerformed
+        CadastroDTO c = new CadastroDTO();
+
+        String id = (txtCnpjFornecedorBusca.getText());
+
+        try {
+            f.read(c, id);
+            if (c.getCnpj() == null) {
+                JOptionPane.showMessageDialog(null, "Fornecedor não encontrado.");
+                return;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        txtCnpjFornecedor.setText(c.getCnpj());
+        txtFornecedor.setText(c.getFornecedor());
+        txtRazaoSocial.setText(c.getRazaoSocial());
+        cbxPais.setSelectedItem(c.getPais());
+        txtEstado.setText(c.getEstado());
+        txtCidade.setText(c.getCidade());
+        txtCodigoPostal.setText(c.getCodigoPostal());
+
+    }//GEN-LAST:event_btnBuscarFornecedorActionPerformed
+
+    private void btnExcluirFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirFornecedorActionPerformed
+        
+        if (verificarCampos(false)) {
+            JOptionPane.showMessageDialog(null, "Há campos não preenchidos!");
+            return;
+        }
+        
+        CadastroDTO c = new CadastroDTO();
+        
+        try {
+            p.delete(c, txtCodInstrumento.getText());
+            JOptionPane.showMessageDialog(null, "Fornecedor excluído.");
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnExcluirFornecedorActionPerformed
+
+    public String cnpjReplace(String cnpj) {
+        String newCnpj = cnpj.replaceAll("[./-]", "");
+        return newCnpj;
     }
+    
+    private boolean verificarCampos(boolean tipo) { // se o tipo for true lida com o produto, senão com o fornecedor
+        
+        if (tipo) { 
+            return "".equals(txtInstrumento.getText()) || 
+                "".equals(txtMarca.getText()) || 
+                "".equals(txtCategoria.getText()) 
+                || cbxFornecedor.getSelectedIndex() == 0;  
+        }
+        System.out.println(cnpjReplace(txtCnpjFornecedor.getText() + "oi"));
+        return "".equals(txtFornecedor.getText()) || 
+            "".equals(txtRazaoSocial.getText()) || 
+            "".equals(cnpjReplace(txtCnpjFornecedor.getText())) || 
+            "".equals(txtEstado.getText()) || 
+            "".equals(txtCidade.getText()) || 
+            "".equals(txtCodigoPostal.getText()) || 
+            cbxPais.getSelectedIndex() == 0;
+    }
+    
+    private void limparCamposProduto() {
+        txtInstrumento.setText("");
+        txtMarca.setText("");
+        txtCategoria.setText("");
+        txtCodInstrumento.setText("");
+        txtBuscaCodInstrumento.setText("");
+        cbxFornecedor.setSelectedIndex(0);
+    }
+    
+    private void limparCamposFornecedor() {
+        txtFornecedor.setText("");
+        txtRazaoSocial.setText("");
+        txtCnpjFornecedor.setText("");
+        txtEstado.setText("");
+        txtCidade.setText("");
+        txtCodigoPostal.setText("");
+        txtCnpjFornecedorBusca.setText(""); 
+        cbxPais.setSelectedIndex(0);
+    }
+    /*
+    private boolean verificarCamposComId(boolean tipo) { // se o tipo for true lida com o produto, senão com o fornecedor    
+        
+        if (tipo) { 
+            return "".equals(txtCodInstrumento.getText()) && verificarCamposSemId(true); 
+        }
+
+        return "".equals(txtCnpjFornecedor.getText()) && verificarCamposSemId(false); 
+
+    }
+    */
+    
     /**
      * @param args the command line arguments
      */
@@ -798,7 +926,8 @@ public class Cadastros extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrarProduto;
     private javax.swing.JButton btnExcluirFornecedor;
     private javax.swing.JButton btnExcluirProduto;
-    private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton btnLimparFornecedor;
+    private javax.swing.JButton btnLimparProduto;
     private javax.swing.JComboBox<String> cbxFornecedor;
     private javax.swing.JComboBox<String> cbxPais;
     private javax.swing.JComboBox<String> jComboBox1;
