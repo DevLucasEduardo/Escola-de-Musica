@@ -74,7 +74,8 @@ public class FornecedorDAO implements DAOInterface {
     public void delete(CadastroDTO cadastro, String id) throws SQLException{
         
         conn.conectaBanco(); 
-        conn.updateSQL("DELETE FROM fornecedor WHERE cnpj = " + id);
+        conn.updateSQL("DELETE FROM instrumento WHERE fk_fornecedor = '" + id + "';");
+        conn.updateSQL("DELETE FROM fornecedor WHERE cnpj = '" + id + "' limit 1;");
         
     }
     

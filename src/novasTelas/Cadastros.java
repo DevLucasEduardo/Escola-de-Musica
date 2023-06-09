@@ -20,6 +20,8 @@ public class Cadastros extends javax.swing.JFrame {
     FornecedorDAO f = new FornecedorDAO();
     HashMap<String, String> fornecedorMap = new HashMap<>(p.fornecedorMap());
     ArrayList<String> cnpjList = new ArrayList<>(fornecedorMap.size());
+    ArrayList<String> produtoList = new ArrayList<>();
+    ArrayList<String> funcionarioList = new ArrayList<>();
     
     public Cadastros() throws SQLException {
         initComponents();
@@ -32,6 +34,16 @@ public class Cadastros extends javax.swing.JFrame {
             cnpjList.add(k);
         });
         
+        p.produtoList().forEach((v) -> {
+            produtoList.add(v);
+            cbxProduto.addItem(v);
+        });
+       
+        p.funcionarioList().forEach((v) -> {
+            funcionarioList.add(v);
+            cbxFuncionario.addItem(v);
+        });
+       
     }
 
     /**
@@ -94,8 +106,8 @@ public class Cadastros extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cbxFuncionario = new javax.swing.JComboBox<>();
+        cbxProduto = new javax.swing.JComboBox<>();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -423,9 +435,7 @@ public class Cadastros extends javax.swing.JFrame {
                             .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(42, 42, 42)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addComponent(jLabel16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel16)
                             .addComponent(txtCodigoPostal)))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -533,9 +543,11 @@ public class Cadastros extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxFuncionarioActionPerformed(evt);
+            }
+        });
 
         jLabel17.setText("Fornecedor");
 
@@ -557,11 +569,11 @@ public class Cadastros extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbxFuncionario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(21, 21, 21))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(21, Short.MAX_VALUE))))
         );
         jPanel7Layout.setVerticalGroup(
@@ -573,11 +585,11 @@ public class Cadastros extends javax.swing.JFrame {
                     .addComponent(jLabel17))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19))
                 .addContainerGap(76, Short.MAX_VALUE))
         );
@@ -662,6 +674,8 @@ public class Cadastros extends javax.swing.JFrame {
             txtCodInstrumento.setText(String.valueOf(id));
             JOptionPane.showMessageDialog(null, "Produto cadastrado.\nCódigo: " + id + ".");
             limparCamposProduto();
+            
+            produtoList.add(c.getInstrumento());
         } catch (SQLException ex) {
             Logger.getLogger(Cadastros.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -692,6 +706,9 @@ public class Cadastros extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarInstrumentoActionPerformed
 
     private void cbxFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFornecedorActionPerformed
+        
+        cnpjList.forEach((v) -> System.out.println(v));
+        fornecedorMap.forEach((k, v) -> System.out.println(k + " " + v));
         
         int a = cbxFornecedor.getSelectedIndex() - 1;
         if (a == -1) {
@@ -815,13 +832,22 @@ public class Cadastros extends javax.swing.JFrame {
         CadastroDTO c = new CadastroDTO();
         
         try {
-            p.delete(c, txtCodInstrumento.getText());
+            f.delete(c, txtCnpjFornecedor.getText());
+            
+            fornecedorMap.remove(c.getCnpj(), c.getFornecedor());
+            cbxFornecedor.removeItem(c.getFornecedor());
+            cnpjList.remove(c.getCnpj());
+            
             JOptionPane.showMessageDialog(null, "Fornecedor excluído.");
         } catch (SQLException ex) {
             Logger.getLogger(Cadastros.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_btnExcluirFornecedorActionPerformed
+
+    private void cbxFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFuncionarioActionPerformed
+        
+    }//GEN-LAST:event_cbxFuncionarioActionPerformed
 
     public String cnpjReplace(String cnpj) {
         String newCnpj = cnpj.replaceAll("[./-]", "");
@@ -929,10 +955,10 @@ public class Cadastros extends javax.swing.JFrame {
     private javax.swing.JButton btnLimparFornecedor;
     private javax.swing.JButton btnLimparProduto;
     private javax.swing.JComboBox<String> cbxFornecedor;
+    private javax.swing.JComboBox<String> cbxFuncionario;
     private javax.swing.JComboBox<String> cbxPais;
+    private javax.swing.JComboBox<String> cbxProduto;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
