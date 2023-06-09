@@ -3,6 +3,7 @@ package novasClasses;
 import conexao.MySQL;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ProdutoDAO implements DAOInterface {
@@ -89,6 +90,26 @@ public class ProdutoDAO implements DAOInterface {
             dict.put(cnpjReplace(conn.getResultSet().getString(1)), conn.getResultSet().getString(2));
         }
         return dict;
+    }
+    
+    public ArrayList<String> produtoList() throws SQLException {
+        ArrayList<String> list = new ArrayList<>();
+        conn.conectaBanco(); 
+        conn.executarSQL("SELECT instrumento FROM instrumento;");
+        while (conn.getResultSet().next()) {
+            list.add(conn.getResultSet().getString(1));
+        }
+        return list;
+    }
+    
+    public ArrayList<String> funcionarioList() throws SQLException {
+        ArrayList<String> list = new ArrayList<>();
+        conn.conectaBanco(); 
+        conn.executarSQL("SELECT id, nome, sobrenome FROM professor;");
+        while (conn.getResultSet().next()) {
+            list.add(conn.getResultSet().getString(1) + " " + conn.getResultSet().getString(2) + " " + conn.getResultSet().getString(3));
+        }
+        return list;
     }
     
     public String cnpjReplace(String cnpj) {
