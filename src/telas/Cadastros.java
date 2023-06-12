@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import novasClasses.CadastroDTO;
-import novasClasses.CompraDAO;
+import novasClasses.Compra;
 import novasClasses.CompraDTO;
 import novasClasses.FornecedorDAO;
 import novasClasses.ProdutoDAO;
@@ -20,7 +20,7 @@ public class Cadastros extends javax.swing.JFrame {
 
     ProdutoDAO p = new ProdutoDAO();
     FornecedorDAO f = new FornecedorDAO();
-    CompraDAO c1 = new CompraDAO();
+    Compra c1 = new Compra();
     
     HashMap<String, String> fornecedorMap = new HashMap<>(p.fornecedorMap());
     ArrayList<String> cnpjList = new ArrayList<>(fornecedorMap.size());
@@ -120,6 +120,10 @@ public class Cadastros extends javax.swing.JFrame {
         txtId = new javax.swing.JTextField();
         btnAtualizarCompra = new javax.swing.JButton();
         btnExcluirCompra = new javax.swing.JButton();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        btnBuscarCompra = new javax.swing.JButton();
+        txtBuscarIdCompra = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -733,19 +737,64 @@ public class Cadastros extends javax.swing.JFrame {
                 .addGap(16, 16, 16))
         );
 
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel20.setText("Buscar compra pelo ID");
+
+        btnBuscarCompra.setBackground(new java.awt.Color(51, 51, 255));
+        btnBuscarCompra.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBuscarCompra.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarCompra.setText("Buscar");
+        btnBuscarCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarCompraActionPerformed(evt);
+            }
+        });
+
+        txtBuscarIdCompra.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
+                .addComponent(txtBuscarIdCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnBuscarCompra)
+                .addContainerGap())
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(btnBuscarCompra)
+                    .addComponent(txtBuscarIdCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17))
+        );
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(97, 97, 97)
+                .addGap(15, 15, 15)
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(107, Short.MAX_VALUE))
         );
@@ -1025,7 +1074,7 @@ public class Cadastros extends javax.swing.JFrame {
         idInstrumento = idInstrumento.split(" ")[0];
         
         CompraDTO c1 = new CompraDTO(txtQuantidade.getText(), txtId.getText(), idFuncionario, idInstrumento);
-        CompraDAO c2 = new CompraDAO();
+        Compra c2 = new Compra();
         
         try {
             c2.create(c1);
@@ -1044,7 +1093,7 @@ public class Cadastros extends javax.swing.JFrame {
         idInstrumento = idInstrumento.split(" ")[0];
         
         CompraDTO c1 = new CompraDTO(txtQuantidade.getText(), txtId.getText(), idFuncionario, idInstrumento);
-        CompraDAO c2 = new CompraDAO();
+        Compra c2 = new Compra();
         
         try {
             c2.update(c1);
@@ -1063,7 +1112,7 @@ public class Cadastros extends javax.swing.JFrame {
         idInstrumento = idInstrumento.split(" ")[0];
         
         CompraDTO c1 = new CompraDTO(txtQuantidade.getText(), txtId.getText(), idFuncionario, idInstrumento);
-        CompraDAO c2 = new CompraDAO();
+        Compra c2 = new Compra();
         
         try {
             c2.delete(c1);
@@ -1072,6 +1121,23 @@ public class Cadastros extends javax.swing.JFrame {
             Logger.getLogger(Cadastros.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnExcluirCompraActionPerformed
+
+    private void btnBuscarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCompraActionPerformed
+
+        
+        CompraDTO c1 = new CompraDTO(txtBuscarIdCompra.getText());
+        Compra c2 = new Compra();
+        
+        try {
+            c2.read(c1);
+            JOptionPane.showMessageDialog(null, "ID: " + c1.getIdCompra() + 
+                    " Quantidade: " + c1.getQuantidade() + 
+                    " Id Funcionário" + c1.getFkFuncionario() + 
+                    " Id produto: " + c1.getFkInstrumento());
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnBuscarCompraActionPerformed
 
     public String cnpjReplace(String cnpj) {
         String newCnpj = cnpj.replaceAll("[./-]", "");
@@ -1162,6 +1228,7 @@ public class Cadastros extends javax.swing.JFrame {
     private javax.swing.JButton btnAtualizarCompra;
     private javax.swing.JButton btnAtualizarFornecedor;
     private javax.swing.JButton btnAtualizarProduto;
+    private javax.swing.JButton btnBuscarCompra;
     private javax.swing.JButton btnBuscarFornecedor;
     private javax.swing.JButton btnBuscarInstrumento;
     private javax.swing.JButton btnCadastrarCompra;
@@ -1188,6 +1255,7 @@ public class Cadastros extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1196,6 +1264,7 @@ public class Cadastros extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1206,6 +1275,7 @@ public class Cadastros extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField txtBuscaCodInstrumento;
+    private javax.swing.JTextField txtBuscarIdCompra;
     private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextField txtCidade;
     private javax.swing.JFormattedTextField txtCnpjFornecedor;

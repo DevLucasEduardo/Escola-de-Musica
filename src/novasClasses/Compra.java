@@ -5,12 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class CompraDAO {
+public class Compra {
     
     MySQL conn = new MySQL();
 
     
-    public CompraDAO() {
+    public Compra() {
         
     }
 
@@ -29,21 +29,16 @@ public class CompraDAO {
 
     }
     
-    public void read(CadastroDTO cadastro, String id) throws SQLException{
-        
+    public void read(CompraDTO c) throws SQLException{
         
         conn.conectaBanco();
-        conn.executarSQL("SELECT * FROM fornecedor WHERE cnpj = '" + id + "'");
+        conn.executarSQL("SELECT * FROM compra WHERE id_compra = " + c.getIdCompra());
         
         while (conn.getResultSet().next()) {
-            cadastro.setCnpj(cnpjReplace(conn.getResultSet().getString(1)));
-            cadastro.setFornecedor(conn.getResultSet().getString(2));
-            cadastro.setRazaoSocial(conn.getResultSet().getString(3));
-            cadastro.setPais(conn.getResultSet().getString(4));
-            cadastro.setEstado(conn.getResultSet().getString(5));
-            cadastro.setCidade(conn.getResultSet().getString(6));
-            cadastro.setCodigoPostal(cnpjReplace(conn.getResultSet().getString(7)));
-            
+            c.setQuantidade(conn.getResultSet().getString(1));
+            c.setIdCompra(conn.getResultSet().getString(2));
+            c.setFkFuncionario(conn.getResultSet().getString(3));
+            c.setFkInstrumento(conn.getResultSet().getString(4));
         }
     }
     
@@ -61,7 +56,6 @@ public class CompraDAO {
         ps.setString(3, c.getFkInstrumento());
         ps.executeUpdate();
     }
-
     
     public void delete(CompraDTO c) throws SQLException{
         

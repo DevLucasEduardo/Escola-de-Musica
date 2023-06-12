@@ -28,7 +28,7 @@ public class ProdutoDAO implements DAOInterface {
     }
     
     @Override
-    public void read(CadastroDTO cadastro, String id) throws SQLException{
+    public boolean read(CadastroDTO cadastro, String id) throws SQLException{
         conn.conectaBanco();
         conn.executarSQL("SELECT I.instrumento, I.categoria, I.marca, I.codigo_instrumento, F.fornecedor, F.cnpj, I.fk_fornecedor " +
                         "FROM fornecedor F JOIN instrumento I " +
@@ -43,6 +43,11 @@ public class ProdutoDAO implements DAOInterface {
             cadastro.setFornecedor(conn.getResultSet().getString(5));
             cadastro.setCnpj(cnpjReplace(conn.getResultSet().getString(6)));
         }
+        
+        if (cadastro.getCodigoInstrumento() == null) {
+            return false;
+        }
+        return true;
     }
     
     @Override

@@ -11,6 +11,12 @@ public class CompraDTO {
         this.fkInstrumento = fkInstrumento;
     }
 
+    public CompraDTO(String idCompra) {
+        this.idCompra = idCompra;
+    }
+    
+    
+
     public CompraDTO() {
     }
 

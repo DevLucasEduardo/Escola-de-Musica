@@ -40,6 +40,11 @@ public class CadastroDTO {
     public CadastroDTO() {
         
     }
+    
+    // Anônimo
+    public CadastroDTO(String cnpj) {
+        
+    }
 
     public String getInstrumento() {
         return instrumento;
