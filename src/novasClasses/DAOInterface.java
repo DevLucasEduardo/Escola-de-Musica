@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public interface DAOInterface {
     
     String create(CadastroDTO cadastro) throws SQLException;
-    void read(CadastroDTO cadastro, String id) throws SQLException;
+    boolean read(CadastroDTO cadastro, String id) throws SQLException;
     void update(CadastroDTO cadastro, String id) throws SQLException;
     void delete(CadastroDTO cadastro, String id) throws SQLException;
     

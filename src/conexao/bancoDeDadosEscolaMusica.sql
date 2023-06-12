@@ -1,6 +1,6 @@
+drop database if exists escola_de_musica;
 CREATE DATABASE IF NOT EXISTS escola_de_musica;
 USE escola_de_musica;
- drop database escola_de_musica;
 
 create table aula (
     nome_aula varchar(20),
@@ -57,7 +57,7 @@ CREATE TABLE fornecedor (
     cnpj 				VARCHAR(18) NOT NULL UNIQUE,
     fornecedor 			VARCHAR(30) NOT NULL,
     razao_social 		VARCHAR(50) NOT NULL,
-	pais 				varchar(30) NOT NULL DEFAULT 'brasil',
+	pais 				varchar(30) NOT NULL,
     estado 				VARCHAR(30) NOT NULL,
     cidade 				VARCHAR(30) NOT NULL,
     codigo_postal 		VARCHAR(30) NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE instrumento (
     instrumento 		VARCHAR(30) NOT NULL,
     categoria 			VARCHAR(15) NOT NULL,
     marca 				VARCHAR(20) NOT NULL,
-    codigo_instrumento 	INT NOT NULL AUTO_INCREMENT,
+    codigo_instrumento 	INT NOT NULL,
     fk_fornecedor 		varchar(18) NOT NULL,
     
     PRIMARY KEY (codigo_instrumento),
@@ -76,8 +76,25 @@ CREATE TABLE instrumento (
 		REFERENCES fornecedor (cnpj)
 );
 
+CREATE TABLE compra(
+	quantidade int not null,
+	id_compra int not null,
+	fk_funcionario int not null,
+    fk_instrumento int not null,
+    primary key (id_compra),
+    foreign key (fk_instrumento) references instrumento (codigo_instrumento),
+    foreign key (fk_funcionario) references professor (id)
+);
 
-insert into fornecedor values("11.111.1-01", "solo", "solo instrumentos", "brasil", "SP", "Sorocaba", "18123");
-insert into fornecedor values("11.111.1-31", "phenix", "phenix instrumentos", "brasil", "SP", "Campinas", "13893");
-insert into instrumento values("violao", "cordas", "crafter", default, "11.111.1-31");
-insert into instrumento values("piano", "teclas", "yamaha", default, "11.111.1-01");
+INSERT INTO professor values(default, 'Lucas', 'Pereira', '123.123.123-12', 'lucas@email', '1998-01-01', 'M', 'SP', 'Sorocaba', 'Jd Florida', 'Alameda Flores', 100, 1);
+INSERT INTO professor VALUES (default, 'John', 'Smith', '111.222.333-44', 'john.smith@email', '1985-07-15', 'M', 'SP', 'São Paulo', 'Centro', 'Rua das Flores', 50, 2);
+INSERT INTO professor VALUES (default, 'Maria', 'Rodriguez', '555.666.777-88', 'maria.rodriguez@email', '1990-03-25', 'F', 'RJ', 'Rio de Janeiro', 'Copacabana', 'Avenida Atlântica', 500, 3);
+INSERT INTO professor VALUES (default, 'Robert', 'Johnson', '999.888.777-66', 'robert.johnson@email', '1980-11-03', 'M', 'RS', 'Porto Alegre', 'Centro', 'Rua dos Artistas', 25, 1);
+INSERT INTO professor VALUES (default, 'Emily', 'Johnson', '444.555.666-77', 'emily.johnson@email', '1992-09-12', 'F', 'MG', 'Belo Horizonte', 'Savassi', 'Avenida Contorno', 150, 2);
+INSERT INTO professor VALUES (default, 'Ricardo', 'Santos', '777.888.999-00', 'ricardo.santos@email', '1987-04-18', 'M', 'SC', 'Florianópolis', 'Centro', 'Rua das Palmeiras', 75, 3);
+
+
+select * from professor;
+select * from instrumento;
+select * from fornecedor;
+select * from compra;

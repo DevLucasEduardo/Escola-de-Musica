@@ -29,7 +29,7 @@ public class FornecedorDAO implements DAOInterface {
     }
     
     @Override
-    public void read(CadastroDTO cadastro, String id) throws SQLException{
+    public boolean read(CadastroDTO cadastro, String id) throws SQLException{
         
         
         conn.conectaBanco();
@@ -41,10 +41,15 @@ public class FornecedorDAO implements DAOInterface {
             cadastro.setRazaoSocial(conn.getResultSet().getString(3));
             cadastro.setPais(conn.getResultSet().getString(4));
             cadastro.setEstado(conn.getResultSet().getString(5));
-            cadastro.setCidade(conn.getResultSet().getString(5));
+            cadastro.setCidade(conn.getResultSet().getString(6));
             cadastro.setCodigoPostal(cnpjReplace(conn.getResultSet().getString(7)));
-
+            
         }
+        
+        if (cadastro.getCnpj() == null) {
+            return false;
+        }
+        return true;
     }
     
     @Override
@@ -83,5 +88,6 @@ public class FornecedorDAO implements DAOInterface {
         String newCnpj = cnpj.replaceAll("[./-]", "");
         return newCnpj;
     }
+   
     
 } 

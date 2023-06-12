@@ -16,12 +16,13 @@ public class CadastroDTO {
     private String codigoPostal;
 
     // Instrumento
-    public CadastroDTO(String instrumento, String categoria, String marca, String cnpj, String fornecedor) {
+    public CadastroDTO(String codigoInstrumento, String instrumento, String categoria, String marca, String cnpj, String fornecedor) {
         this.instrumento = instrumento;
         this.categoria = categoria;
         this.marca = marca;
         this.cnpj = cnpj;
         this.fornecedor = fornecedor;
+        this.codigoInstrumento = codigoInstrumento;
     }
 
     // Fornecedor
@@ -37,6 +38,11 @@ public class CadastroDTO {
     
     // Anônimo
     public CadastroDTO() {
+        
+    }
+    
+    // Anônimo
+    public CadastroDTO(String cnpj) {
         
     }
 
