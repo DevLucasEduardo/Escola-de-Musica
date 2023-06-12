@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import novasClasses.CadastroDTO;
-import novasClasses.Compra;
+import novasClasses.CompraDAO;
 import novasClasses.CompraDTO;
 import novasClasses.FornecedorDAO;
 import novasClasses.ProdutoDAO;
@@ -20,7 +20,7 @@ public class Cadastros extends javax.swing.JFrame {
 
     ProdutoDAO p = new ProdutoDAO();
     FornecedorDAO f = new FornecedorDAO();
-    Compra c1 = new Compra();
+    CompraDAO c1 = new CompraDAO();
     
     HashMap<String, String> fornecedorMap = new HashMap<>(p.fornecedorMap());
     ArrayList<String> cnpjList = new ArrayList<>(fornecedorMap.size());
@@ -1074,7 +1074,7 @@ public class Cadastros extends javax.swing.JFrame {
         idInstrumento = idInstrumento.split(" ")[0];
         
         CompraDTO c1 = new CompraDTO(txtQuantidade.getText(), txtId.getText(), idFuncionario, idInstrumento);
-        Compra c2 = new Compra();
+        CompraDAO c2 = new CompraDAO();
         
         try {
             c2.create(c1);
@@ -1093,7 +1093,7 @@ public class Cadastros extends javax.swing.JFrame {
         idInstrumento = idInstrumento.split(" ")[0];
         
         CompraDTO c1 = new CompraDTO(txtQuantidade.getText(), txtId.getText(), idFuncionario, idInstrumento);
-        Compra c2 = new Compra();
+        CompraDAO c2 = new CompraDAO();
         
         try {
             c2.update(c1);
@@ -1112,7 +1112,7 @@ public class Cadastros extends javax.swing.JFrame {
         idInstrumento = idInstrumento.split(" ")[0];
         
         CompraDTO c1 = new CompraDTO(txtQuantidade.getText(), txtId.getText(), idFuncionario, idInstrumento);
-        Compra c2 = new Compra();
+        CompraDAO c2 = new CompraDAO();
         
         try {
             c2.delete(c1);
@@ -1126,14 +1126,14 @@ public class Cadastros extends javax.swing.JFrame {
 
         
         CompraDTO c1 = new CompraDTO(txtBuscarIdCompra.getText());
-        Compra c2 = new Compra();
+        CompraDAO c2 = new CompraDAO();
         
         try {
             c2.read(c1);
-            JOptionPane.showMessageDialog(null, "ID: " + c1.getIdCompra() + 
-                    " Quantidade: " + c1.getQuantidade() + 
-                    " Id Funcionário" + c1.getFkFuncionario() + 
-                    " Id produto: " + c1.getFkInstrumento());
+            JOptionPane.showMessageDialog(null, "ID da compra: " + c1.getIdCompra() + 
+                    ". \nQuantidade: " + c1.getQuantidade() + 
+                    ". \nId do funcionário: " + c1.getFkFuncionario() + 
+                    ". \nId do produto: " + c1.getFkInstrumento());
         } catch (SQLException ex) {
             Logger.getLogger(Cadastros.class.getName()).log(Level.SEVERE, null, ex);
         }

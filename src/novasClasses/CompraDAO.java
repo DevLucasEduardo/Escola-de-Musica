@@ -5,12 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Compra {
+public class CompraDAO {
     
     MySQL conn = new MySQL();
 
     
-    public Compra() {
+    public CompraDAO() {
         
     }
 
