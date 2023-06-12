@@ -41,9 +41,9 @@ public class FornecedorDAO implements DAOInterface {
             cadastro.setRazaoSocial(conn.getResultSet().getString(3));
             cadastro.setPais(conn.getResultSet().getString(4));
             cadastro.setEstado(conn.getResultSet().getString(5));
-            cadastro.setCidade(conn.getResultSet().getString(5));
+            cadastro.setCidade(conn.getResultSet().getString(6));
             cadastro.setCodigoPostal(cnpjReplace(conn.getResultSet().getString(7)));
-
+            
         }
     }
     

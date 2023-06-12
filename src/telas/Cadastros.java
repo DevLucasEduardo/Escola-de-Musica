@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package novasTelas;
+package telas;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -207,7 +207,9 @@ public class Cadastros extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        btnLimparProduto.setBackground(new java.awt.Color(255, 255, 255));
+        btnLimparProduto.setBackground(new java.awt.Color(51, 51, 255));
+        btnLimparProduto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnLimparProduto.setForeground(new java.awt.Color(255, 255, 255));
         btnLimparProduto.setText("Limpar campos");
         btnLimparProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -792,8 +794,7 @@ public class Cadastros extends javax.swing.JFrame {
 
     private void cbxFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFornecedorActionPerformed
         
-        cnpjList.forEach((v) -> System.out.println(v));
-        fornecedorMap.forEach((k, v) -> System.out.println(k + " " + v));
+        
         
         int a = cbxFornecedor.getSelectedIndex() - 1;
         if (a == -1) {
@@ -853,11 +854,9 @@ public class Cadastros extends javax.swing.JFrame {
 
         try {
             f.update(c, txtCnpjFornecedorBusca.getText());
-            
-            cbxFornecedor.removeItem(fornecedorMap.get(c.getCnpj()));
+              
             fornecedorMap.remove(c.getCnpj());
-            fornecedorMap.put(c.getCnpj(), c.getFornecedor());
-            cbxFornecedor.addItem(fornecedorMap.get(c.getCnpj()));
+            fornecedorMap.put(cnpjReplace(c.getCnpj()), c.getFornecedor());
             
             
             JOptionPane.showMessageDialog(null, "Fornecedor atualizado.");
@@ -883,10 +882,11 @@ public class Cadastros extends javax.swing.JFrame {
         try {
             f.create(c);
             JOptionPane.showMessageDialog(null, "Fornecedor cadastrado. \nCNPJ: " + c.getCnpj() + ".");
-            limparCamposProduto();
-            fornecedorMap.put(c.getCnpj(), c.getFornecedor());
+            limparCamposFornecedor();
+            fornecedorMap.put(cnpjReplace(c.getCnpj()), c.getFornecedor());
             cbxFornecedor.addItem(c.getFornecedor());
-            cnpjList.add(c.getCnpj());
+            cnpjList.add(cnpjReplace(c.getCnpj()));
+
 
         } catch (SQLException ex) {
             Logger.getLogger(Cadastros.class.getName()).log(Level.SEVERE, null, ex);
@@ -897,7 +897,7 @@ public class Cadastros extends javax.swing.JFrame {
         CadastroDTO c = new CadastroDTO();
 
         String id = (txtCnpjFornecedorBusca.getText());
-
+        
         try {
             f.read(c, id);
             if (c.getCnpj() == null) {
@@ -907,7 +907,6 @@ public class Cadastros extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Cadastros.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         txtCnpjFornecedor.setText(c.getCnpj());
         txtFornecedor.setText(c.getFornecedor());
         txtRazaoSocial.setText(c.getRazaoSocial());
@@ -935,8 +934,11 @@ public class Cadastros extends javax.swing.JFrame {
         
         try {
             f.delete(c, txtCnpjFornecedor.getText());
-            
-            fornecedorMap.remove(c.getCnpj());
+
+            if (cbxFornecedor.getSelectedItem() == txtFornecedor.getText()) {
+                cbxFornecedor.setSelectedIndex(-1);
+            }
+            fornecedorMap.remove(cnpjReplace(c.getCnpj()));
             cbxFornecedor.removeItem(c.getFornecedor());
             cnpjList.remove(c.getCnpj());
             
@@ -959,7 +961,7 @@ public class Cadastros extends javax.swing.JFrame {
         
         String idInstrumento = (String) cbxProduto.getSelectedItem();
         idInstrumento = idInstrumento.split(" ")[0];
-        System.out.println(idFuncionario + " " + idInstrumento);
+
         try {
             c2.create(idFuncionario, idInstrumento);
             JOptionPane.showMessageDialog(null, "Compra cadastrada com sucesso!");
