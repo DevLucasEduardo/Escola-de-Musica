@@ -3,7 +3,6 @@ package novasClasses;
 import conexao.MySQL;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ProdutoDAO implements DAOInterface {
@@ -15,23 +14,15 @@ public class ProdutoDAO implements DAOInterface {
         
         conn.conectaBanco(); 
 
-        String sql = "INSERT INTO instrumento (instrumento, categoria, marca, fk_fornecedor) VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO instrumento (codigo_instrumento, instrumento, categoria, marca, fk_fornecedor) VALUES(?, ?, ?, ?, ?)";
         PreparedStatement ps = conn.getConn().prepareStatement(sql); 
-        ps.setString(1, cadastro.getInstrumento());
-        ps.setString(2, cadastro.getCategoria());
-        ps.setString(3, cadastro.getMarca());
-        ps.setString(4, cadastro.getCnpj());
+        ps.setString(1, cadastro.getCodigoInstrumento());
+        ps.setString(2, cadastro.getInstrumento());
+        ps.setString(3, cadastro.getCategoria());
+        ps.setString(4, cadastro.getMarca());
+        ps.setString(5, cadastro.getCnpj());
         ps.execute();
 
-        conn.executarSQL("SELECT * FROM instrumento WHERE instrumento = '"+ cadastro.getInstrumento() + "'" +
-                                                   "AND categoria = '"+ cadastro.getCategoria() + "'" +
-                                                   "AND marca = '" + cadastro.getMarca() + "'" +
-                                                   "AND fk_fornecedor = '" + cadastro.getCnpj() + "'" + 
-                                                   "ORDER BY codigo_instrumento DESC LIMIT 1");
-
-        while (conn.getResultSet().next()) {
-            cadastro.setCodigoInstrumento(conn.getResultSet().getString(4));
-        }
         return cadastro.getCodigoInstrumento();
 
     }
@@ -60,16 +51,18 @@ public class ProdutoDAO implements DAOInterface {
         conn.conectaBanco();
 
         String sql = ("UPDATE instrumento "
-                + "SET instrumento=?, "
+                + "SET codigo_instrumento=?," 
+                + "instrumento=?, "
                 + "categoria=?, "
                 + "marca=?, "
                 + "fk_fornecedor=? WHERE codigo_instrumento = " + id);
         
         PreparedStatement ps = conn.getConn().prepareStatement(sql); 
-        ps.setString(1, cadastro.getInstrumento());
-        ps.setString(2, cadastro.getCategoria());
-        ps.setString(3, cadastro.getMarca());
-        ps.setString(4, cadastro.getCnpj());
+        ps.setString(1, cadastro.getCodigoInstrumento());
+        ps.setString(2, cadastro.getInstrumento());
+        ps.setString(3, cadastro.getCategoria());
+        ps.setString(4, cadastro.getMarca());
+        ps.setString(5, cadastro.getCnpj());
         ps.execute();
 
     }
@@ -90,26 +83,6 @@ public class ProdutoDAO implements DAOInterface {
             dict.put(cnpjReplace(conn.getResultSet().getString(1)), conn.getResultSet().getString(2));
         }
         return dict;
-    }
-    
-    public ArrayList<String> produtoList() throws SQLException {
-        ArrayList<String> list = new ArrayList<>();
-        conn.conectaBanco(); 
-        conn.executarSQL("SELECT instrumento FROM instrumento;");
-        while (conn.getResultSet().next()) {
-            list.add(conn.getResultSet().getString(1));
-        }
-        return list;
-    }
-    
-    public ArrayList<String> funcionarioList() throws SQLException {
-        ArrayList<String> list = new ArrayList<>();
-        conn.conectaBanco(); 
-        conn.executarSQL("SELECT id, nome, sobrenome FROM professor;");
-        while (conn.getResultSet().next()) {
-            list.add(conn.getResultSet().getString(1) + " " + conn.getResultSet().getString(2) + " " + conn.getResultSet().getString(3));
-        }
-        return list;
     }
     
     public String cnpjReplace(String cnpj) {
