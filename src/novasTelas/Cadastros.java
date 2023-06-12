@@ -115,17 +115,28 @@ public class Cadastros extends javax.swing.JFrame {
         btnCompra = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
+        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jTabbedPane1.setForeground(new java.awt.Color(255, 255, 255));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setText("Buscar produto pelo código");
 
+        txtBuscaCodInstrumento.setBackground(new java.awt.Color(255, 255, 255));
         txtBuscaCodInstrumento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBuscaCodInstrumentoActionPerformed(evt);
             }
         });
 
+        btnBuscarInstrumento.setBackground(new java.awt.Color(51, 51, 255));
+        btnBuscarInstrumento.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBuscarInstrumento.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscarInstrumento.setText("Buscar");
         btnBuscarInstrumento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,6 +168,7 @@ public class Cadastros extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
         );
 
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Informações do produto"));
 
         jLabel2.setText("Instrumento:");
@@ -167,6 +179,15 @@ public class Cadastros extends javax.swing.JFrame {
 
         jLabel6.setText("Marca:");
 
+        txtInstrumento.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtMarca.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtCategoria.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtCodInstrumento.setBackground(new java.awt.Color(255, 255, 255));
+
+        cbxFornecedor.setBackground(new java.awt.Color(255, 255, 255));
         cbxFornecedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Selecione um fornecedor>" }));
         cbxFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,12 +200,14 @@ public class Cadastros extends javax.swing.JFrame {
         jLabel7.setText("CNPJ:");
 
         txtCnpjProduto.setEditable(false);
+        txtCnpjProduto.setBackground(new java.awt.Color(255, 255, 255));
         try {
             txtCnpjProduto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
+        btnLimparProduto.setBackground(new java.awt.Color(255, 255, 255));
         btnLimparProduto.setText("Limpar campos");
         btnLimparProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -252,6 +275,9 @@ public class Cadastros extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
+        btnAtualizarProduto.setBackground(new java.awt.Color(51, 51, 255));
+        btnAtualizarProduto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAtualizarProduto.setForeground(new java.awt.Color(255, 255, 255));
         btnAtualizarProduto.setText("Atualizar");
         btnAtualizarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,6 +285,9 @@ public class Cadastros extends javax.swing.JFrame {
             }
         });
 
+        btnExcluirProduto.setBackground(new java.awt.Color(51, 51, 255));
+        btnExcluirProduto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnExcluirProduto.setForeground(new java.awt.Color(255, 255, 255));
         btnExcluirProduto.setText("Excluir");
         btnExcluirProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,6 +295,9 @@ public class Cadastros extends javax.swing.JFrame {
             }
         });
 
+        btnCadastrarProduto.setBackground(new java.awt.Color(51, 51, 255));
+        btnCadastrarProduto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCadastrarProduto.setForeground(new java.awt.Color(255, 255, 255));
         btnCadastrarProduto.setText("Cadastrar");
         btnCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -286,13 +318,13 @@ public class Cadastros extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
+                        .addGap(46, 46, 46)
                         .addComponent(btnCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
                         .addComponent(btnAtualizarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
                         .addComponent(btnExcluirProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,20 +333,26 @@ public class Cadastros extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAtualizarProduto)
                     .addComponent(btnExcluirProduto)
                     .addComponent(btnCadastrarProduto))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addGap(60, 60, 60))
         );
 
         jTabbedPane1.addTab("PRODUTOS", jPanel1);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel8.setText("Buscar fornecedor pelo CNPJ");
 
+        btnBuscarFornecedor.setBackground(new java.awt.Color(51, 51, 255));
+        btnBuscarFornecedor.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBuscarFornecedor.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscarFornecedor.setText("Buscar");
         btnBuscarFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -322,6 +360,7 @@ public class Cadastros extends javax.swing.JFrame {
             }
         });
 
+        txtCnpjFornecedorBusca.setBackground(new java.awt.Color(255, 255, 255));
         try {
             txtCnpjFornecedorBusca.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
@@ -352,6 +391,7 @@ public class Cadastros extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Fornecedor"));
 
         jLabel9.setText("Fornecedor:");
@@ -360,6 +400,11 @@ public class Cadastros extends javax.swing.JFrame {
 
         jLabel14.setText("CNPJ:");
 
+        txtFornecedor.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtRazaoSocial.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtCnpjFornecedor.setBackground(new java.awt.Color(255, 255, 255));
         try {
             txtCnpjFornecedor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
@@ -410,15 +455,23 @@ public class Cadastros extends javax.swing.JFrame {
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Endereço"));
 
         jLabel13.setText("País:");
 
+        cbxPais.setBackground(new java.awt.Color(255, 255, 255));
         cbxPais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Selecione>", "Afeganistão", "África do Sul", "Albânia", "Alemanha", "Andorra", "Angola", "Antígua e Barbuda", "Arábia Saudita", "Argélia", "Argentina", "Armênia", "Austrália", "Áustria", "Azerbaijão", "Bahamas", "Bangladesh", "Barbados", "Barém", "Bélgica", "Belize", "Benin", "Bielorrússia", "Bolívia", "Bósnia e Herzegovina", "Botsuana", "Brasil", "Brunei", "Bulgária", "Burquina Faso", "Burundi", "Butão", "Cabo Verde", "Camarões", "Camboja", "Canadá", "Catar", "Cazaquistão", "Chade", "Chile", "China", "Chipre", "Colômbia", "Comores", "Congo (Brazzaville)", "Congo (Kinshasa)", "Coreia do Norte", "Coreia do Sul", "Costa do Marfim", "Costa Rica", "Croácia", "Cuba", "Dinamarca", "Djibuti", "Dominica", "Egito", "El Salvador", "Emirados Árabes Unidos", "Equador", "Eritreia", "Eslováquia", "Eslovênia", "Espanha", "Estados Unidos", "Estônia", "Eswatini", "Etiópia", "Fiji", "Filipinas", "Finlândia", "França", "Gabão", "Gâmbia", "Gana", "Geórgia", "Granada", "Grécia", "Guatemala", "Guiana", "Guiné", "Guiné-Bissau", "Guiné Equatorial", "Haiti", "Holanda", "Honduras", "Hungria", "Iêmen", "Ilhas Marechal", "Índia", "Indonésia", "Irã", "Iraque", "Irlanda", "Islândia", "Israel", "Itália", "Jamaica", "Japão", "Jordânia", "Kiribati", "Kosovo", "Kuwait", "Laos", "Lesoto", "Letônia", "Líbano", "Libéria", "Líbia", "Liechtenstein", "Lituânia", "Luxemburgo", "Macedônia do Norte", "Madagascar", "Malásia", "Malaui", "Maldivas", "Mali", "Malta", "Marrocos", "Maurício", "Mauritânia", "México", "Micronésia", "Moçambique", "Moldávia", "Mônaco", "Mongólia", "Montenegro", "Myanmar (Birmânia)", "Namíbia", "Nauru", "Nepal", "Nicarágua", "Níger", "Nigéria", "Noruega", "Nova Zelândia", "Omã", "Palau", "Panamá", "Papua-Nova Guiné", "Paquistão", "Paraguai", "Peru", "Polônia", "Portugal", "Quênia", "Quirguistão", "Reino Unido", "República Centro-Africana", "República Dominicana", "República Tcheca", "Romênia", "Ruanda", "Rússia", "Salomão (Ilhas)", "Samoa", "San Marino", "Santa Lúcia", "São Cristóvão e Névis", "São Tomé e Príncipe", "São Vicente e Granadinas", "Seicheles", "Senegal", "Serra Leoa", "Sérvia", "Singapura", "Síria", "Somália", "Sri Lanka", "Sudão", "Sudão do Sul", "Suécia", "Suíça", "Suriname", "Tailândia", "Taiwan", "Tajiquistão", "Tanzânia", "Timor-Leste", "Togo", "Tonga", "Trindade e Tobago", "Tunísia", "Turcomenistão", "Turquia", "Tuvalu", "Ucrânia", "Uganda", "Uruguai", "Uzbequistão", "Vanuatu", "Vaticano", "Venezuela", "Vietnã", "Zâmbia", "Zimbábue" }));
 
         jLabel10.setText("Estado:");
 
+        txtEstado.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel15.setText("Cidade:");
+
+        txtCidade.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtCodigoPostal.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel16.setText("Código postal:");
 
@@ -469,6 +522,9 @@ public class Cadastros extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
+        btnCadastrarFornecedor.setBackground(new java.awt.Color(51, 51, 255));
+        btnCadastrarFornecedor.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCadastrarFornecedor.setForeground(new java.awt.Color(255, 255, 255));
         btnCadastrarFornecedor.setText("Cadastrar");
         btnCadastrarFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -476,6 +532,9 @@ public class Cadastros extends javax.swing.JFrame {
             }
         });
 
+        btnAtualizarFornecedor.setBackground(new java.awt.Color(51, 51, 255));
+        btnAtualizarFornecedor.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAtualizarFornecedor.setForeground(new java.awt.Color(255, 255, 255));
         btnAtualizarFornecedor.setText("Atualizar");
         btnAtualizarFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -483,6 +542,9 @@ public class Cadastros extends javax.swing.JFrame {
             }
         });
 
+        btnExcluirFornecedor.setBackground(new java.awt.Color(51, 51, 255));
+        btnExcluirFornecedor.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnExcluirFornecedor.setForeground(new java.awt.Color(255, 255, 255));
         btnExcluirFornecedor.setText("Excluir");
         btnExcluirFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -490,6 +552,9 @@ public class Cadastros extends javax.swing.JFrame {
             }
         });
 
+        btnLimparFornecedor.setBackground(new java.awt.Color(51, 51, 255));
+        btnLimparFornecedor.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnLimparFornecedor.setForeground(new java.awt.Color(255, 255, 255));
         btnLimparFornecedor.setText("Limpar campos");
         btnLimparFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -504,7 +569,7 @@ public class Cadastros extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -528,27 +593,45 @@ public class Cadastros extends javax.swing.JFrame {
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLimparFornecedor)
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExcluirFornecedor)
                     .addComponent(btnAtualizarFornecedor)
                     .addComponent(btnCadastrarFornecedor))
-                .addGap(29, 29, 29))
+                .addGap(41, 41, 41))
         );
 
         jTabbedPane1.addTab("FORNECEDORES", jPanel2);
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados para compra"));
+
+        cbxFuncionario.setBackground(new java.awt.Color(255, 255, 255));
         cbxFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxFuncionarioActionPerformed(evt);
             }
         });
 
+        cbxProduto.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel18.setText("Funcionário");
 
         jLabel19.setText("Produto");
+
+        btnCompra.setBackground(new java.awt.Color(51, 51, 255));
+        btnCompra.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCompra.setForeground(new java.awt.Color(255, 255, 255));
+        btnCompra.setText("Efetuar compra");
+        btnCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -564,6 +647,10 @@ public class Cadastros extends javax.swing.JFrame {
                     .addComponent(cbxFuncionario, 0, 170, Short.MAX_VALUE)
                     .addComponent(cbxProduto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(21, 21, 21))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCompra)
+                .addGap(123, 123, 123))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -576,38 +663,26 @@ public class Cadastros extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19))
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addComponent(btnCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
         );
-
-        btnCompra.setText("Efetuar compra");
-        btnCompra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCompraActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(btnCompra)))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addGap(49, 49, 49)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(97, 97, 97)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(btnCompra)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("COMPRAS", jPanel3);
