@@ -11,7 +11,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import novasClasses.CadastroDTO;
-import novasClasses.Compra;
+import novasClasses.CompraDAO;
+import novasClasses.CompraDTO;
 import novasClasses.FornecedorDAO;
 import novasClasses.ProdutoDAO;
 
@@ -19,7 +20,7 @@ public class Cadastros extends javax.swing.JFrame {
 
     ProdutoDAO p = new ProdutoDAO();
     FornecedorDAO f = new FornecedorDAO();
-    Compra c1 = new Compra();
+    CompraDAO c1 = new CompraDAO();
     
     HashMap<String, String> fornecedorMap = new HashMap<>(p.fornecedorMap());
     ArrayList<String> cnpjList = new ArrayList<>(fornecedorMap.size());
@@ -112,7 +113,13 @@ public class Cadastros extends javax.swing.JFrame {
         cbxProduto = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        btnCompra = new javax.swing.JButton();
+        btnCadastrarCompra = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        txtQuantidade = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
+        btnAtualizarCompra = new javax.swing.JButton();
+        btnExcluirCompra = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -625,13 +632,41 @@ public class Cadastros extends javax.swing.JFrame {
 
         jLabel19.setText("Produto");
 
-        btnCompra.setBackground(new java.awt.Color(51, 51, 255));
-        btnCompra.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnCompra.setForeground(new java.awt.Color(255, 255, 255));
-        btnCompra.setText("Efetuar compra");
-        btnCompra.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastrarCompra.setBackground(new java.awt.Color(51, 51, 255));
+        btnCadastrarCompra.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCadastrarCompra.setForeground(new java.awt.Color(255, 255, 255));
+        btnCadastrarCompra.setText("Efetuar compra");
+        btnCadastrarCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCompraActionPerformed(evt);
+                btnCadastrarCompraActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("Quantidade:");
+
+        txtQuantidade.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel17.setText("ID:");
+
+        txtId.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnAtualizarCompra.setBackground(new java.awt.Color(51, 51, 255));
+        btnAtualizarCompra.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAtualizarCompra.setForeground(new java.awt.Color(255, 255, 255));
+        btnAtualizarCompra.setText("Atualizar");
+        btnAtualizarCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarCompraActionPerformed(evt);
+            }
+        });
+
+        btnExcluirCompra.setBackground(new java.awt.Color(51, 51, 255));
+        btnExcluirCompra.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnExcluirCompra.setForeground(new java.awt.Color(255, 255, 255));
+        btnExcluirCompra.setText("Excluir");
+        btnExcluirCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirCompraActionPerformed(evt);
             }
         });
 
@@ -639,25 +674,41 @@ public class Cadastros extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel19))
-                .addGap(85, 85, 85)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbxFuncionario, 0, 170, Short.MAX_VALUE)
-                    .addComponent(cbxProduto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(21, 21, 21))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCompra)
-                .addGap(123, 123, 123))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel18)
+                                    .addComponent(jLabel19)
+                                    .addComponent(jLabel11))
+                                .addGap(83, 83, 83)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbxFuncionario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbxProduto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnCadastrarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAtualizarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnExcluirCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(74, 74, 74)
+                .addGap(42, 42, 42)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbxFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18))
@@ -665,9 +716,21 @@ public class Cadastros extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbxProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                .addComponent(btnCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCadastrarCompra)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnExcluirCompra)
+                        .addComponent(btnAtualizarCompra)))
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -676,7 +739,7 @@ public class Cadastros extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(49, 49, 49)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -684,7 +747,7 @@ public class Cadastros extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(97, 97, 97)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("COMPRAS", jPanel3);
@@ -953,22 +1016,62 @@ public class Cadastros extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cbxFuncionarioActionPerformed
 
-    private void btnCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompraActionPerformed
-        Compra c2 = new Compra();
-        
+    private void btnCadastrarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarCompraActionPerformed
+
         String idFuncionario = (String) cbxFuncionario.getSelectedItem();
         idFuncionario = idFuncionario.split(" ")[0];
-        
+
         String idInstrumento = (String) cbxProduto.getSelectedItem();
         idInstrumento = idInstrumento.split(" ")[0];
-
+        
+        CompraDTO c1 = new CompraDTO(txtQuantidade.getText(), txtId.getText(), idFuncionario, idInstrumento);
+        CompraDAO c2 = new CompraDAO();
+        
         try {
-            c2.create(idFuncionario, idInstrumento);
+            c2.create(c1);
             JOptionPane.showMessageDialog(null, "Compra cadastrada com sucesso!");
         } catch (SQLException ex) {
             Logger.getLogger(Cadastros.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnCompraActionPerformed
+    }//GEN-LAST:event_btnCadastrarCompraActionPerformed
+
+    private void btnAtualizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarCompraActionPerformed
+
+        String idFuncionario = (String) cbxFuncionario.getSelectedItem();
+        idFuncionario = idFuncionario.split(" ")[0];
+
+        String idInstrumento = (String) cbxProduto.getSelectedItem();
+        idInstrumento = idInstrumento.split(" ")[0];
+        
+        CompraDTO c1 = new CompraDTO(txtQuantidade.getText(), txtId.getText(), idFuncionario, idInstrumento);
+        CompraDAO c2 = new CompraDAO();
+        
+        try {
+            c2.update(c1);
+            JOptionPane.showMessageDialog(null, "Compra atualizada com sucesso!");
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
+    }//GEN-LAST:event_btnAtualizarCompraActionPerformed
+
+    private void btnExcluirCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirCompraActionPerformed
+        String idFuncionario = (String) cbxFuncionario.getSelectedItem();
+        idFuncionario = idFuncionario.split(" ")[0];
+
+        String idInstrumento = (String) cbxProduto.getSelectedItem();
+        idInstrumento = idInstrumento.split(" ")[0];
+        
+        CompraDTO c1 = new CompraDTO(txtQuantidade.getText(), txtId.getText(), idFuncionario, idInstrumento);
+        CompraDAO c2 = new CompraDAO();
+        
+        try {
+            c2.delete(c1);
+            JOptionPane.showMessageDialog(null, "Compra cancelada com sucesso!");
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastros.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnExcluirCompraActionPerformed
 
     public String cnpjReplace(String cnpj) {
         String newCnpj = cnpj.replaceAll("[./-]", "");
@@ -1056,13 +1159,15 @@ public class Cadastros extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAtualizarCompra;
     private javax.swing.JButton btnAtualizarFornecedor;
     private javax.swing.JButton btnAtualizarProduto;
     private javax.swing.JButton btnBuscarFornecedor;
     private javax.swing.JButton btnBuscarInstrumento;
+    private javax.swing.JButton btnCadastrarCompra;
     private javax.swing.JButton btnCadastrarFornecedor;
     private javax.swing.JButton btnCadastrarProduto;
-    private javax.swing.JButton btnCompra;
+    private javax.swing.JButton btnExcluirCompra;
     private javax.swing.JButton btnExcluirFornecedor;
     private javax.swing.JButton btnExcluirProduto;
     private javax.swing.JButton btnLimparFornecedor;
@@ -1073,11 +1178,13 @@ public class Cadastros extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbxProduto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -1108,8 +1215,10 @@ public class Cadastros extends javax.swing.JFrame {
     private javax.swing.JTextField txtCodigoPostal;
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtFornecedor;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtInstrumento;
     private javax.swing.JTextField txtMarca;
+    private javax.swing.JTextField txtQuantidade;
     private javax.swing.JTextField txtRazaoSocial;
     // End of variables declaration//GEN-END:variables
 }
